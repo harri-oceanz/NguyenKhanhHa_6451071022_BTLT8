@@ -22,6 +22,13 @@ class DatabaseService {
       path,
       version: 2,
       onCreate: _onCreate,
+      onUpgrade: (db, oldVersion, newVersion) async {
+        if (oldVersion < 2) {
+          await db.execute(
+            'ALTER TABLE notes ADD COLUMN categoryId INTEGER'
+          );
+        }
+      },
     );
   }
 
@@ -39,7 +46,9 @@ class DatabaseService {
       CREATE TABLE notes(
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         title TEXT,
-        content TEXT
+        content TEXT,
+        categoryId INTEGER,
+        FOREIGN KEY (categoryId) REFERENCES categories (id)
       )
     ''');
   }
