@@ -74,7 +74,7 @@ class _NoteListViewState extends State<NoteListView> {
 
             Navigator.pop(context);
 
-            loadCategories(); // 👈 reload dropdown
+            loadCategories();
           },
           child: const Text("Save"),
         ),
