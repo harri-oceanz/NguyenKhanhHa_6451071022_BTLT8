@@ -49,8 +49,6 @@ class _ExpenseFormViewState extends State<ExpenseFormView> {
         categoryId: selectedCategoryId!,
       );
 
-      print("👉 BEFORE INSERT");
-
       if (widget.expense == null) {
         await controller.add(e);
       } else {
